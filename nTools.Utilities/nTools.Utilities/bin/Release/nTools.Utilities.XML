@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>nTools.Utilities</name>
+    </assembly>
+    <members>
+        <member name="M:nTools.Utilities.Ranges.Range`1.#ctor(`0,`0)">
+            <summary>
+            constructor handling type T. if your lower is greater than your upper, then they will be swapped for you
+            </summary>
+            <param name="lower"></param>
+            <param name="upper"></param>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.Contains(`0)">
+            <summary>
+            returns bool whether the element fits within the bounds of the range
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.Contains(nTools.Utilities.Ranges.Range{`0})">
+            <summary>
+            returns bool whether the supplied range fits within the bounds of the range
+            </summary>
+            <param name="otherRange"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.CompareTo(nTools.Utilities.Ranges.Range{`0})">
+            <summary>
+            <para>compares this range to another</para>
+            <para>if this one contains the all of the other or the other contains all of this one, then it returns 0</para>
+            <para>if the lower bound of this one is larger than the upper bound of the other one, it returns 1</para>
+            <para>if the upper bound of this one is smaller than the lower bound of the other one, it returns -1</para>
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.CompareTo(`0)">
+            <summary>
+            <para>compares this range to an element</para>
+            <para>if this range contains the element, it returns 0</para>
+            <para>if the lower bound is larger than the element, it returns 1</para>
+            <para>if the upper bound is smaller than the element, it returns -1</para>
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.Compare(nTools.Utilities.Ranges.Range{`0},nTools.Utilities.Ranges.Range{`0})">
+            <summary>
+            compares two ranges, returning left.CompareTo(right)
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.Equals(nTools.Utilities.Ranges.Range{`0})">
+            <summary>
+            if this range contains all of other or other contains this whole range, it returns true, else false
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.Equals(`0)">
+            <summary>
+            if this range contains T other, then it returns true, else false
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.OutsideOf(nTools.Utilities.Ranges.Range{`0})">
+            <summary>
+            returns true if other does not contain this whole range
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.Intersects(nTools.Utilities.Ranges.Range{`0})">
+            <summary>
+            returns whether or not both ranges intersect at least at one point
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.op_Equality(nTools.Utilities.Ranges.Range{`0},nTools.Utilities.Ranges.Range{`0})">
+            <summary>
+            if this range contains all of other range or other contains this whole range, it returns true, else false
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.op_Equality(nTools.Utilities.Ranges.Range{`0},`0)">
+            <summary>
+            if this range contains T other, then it returns true, else false
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.op_Inequality(nTools.Utilities.Ranges.Range{`0},nTools.Utilities.Ranges.Range{`0})">
+            <summary>
+            returns true if right is completely contained by left or left is completely contained by right, else false
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.op_Inequality(nTools.Utilities.Ranges.Range{`0},`0)">
+            <summary>
+            returns true if right is not contained by left, else false
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.Range`1.ToString">
+            <summary>
+            returns the string.Format of the type, lower bound and upper bound
+            <para>Exa:</para>
+            <para>Range&lt;int&gt;[2 -> 8]</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:nTools.Utilities.Ranges.Range`1.Lower">
+            <summary>
+            get the lower bound of the range
+            </summary>
+        </member>
+        <member name="P:nTools.Utilities.Ranges.Range`1.Upper">
+            <summary>
+            get the upper bound of the range
+            </summary>
+        </member>
+        <member name="T:nTools.Utilities.Ranges.RangeArray`2">
+            <summary>
+            RangeArray&lt;T, U&gt; overlaps the Dictionary&lt;Range&lt;T&gt;,U&gt; allowing for extra functionality
+            <para>One of the things it adds is the ability to supply a param of type T, and it will lookup all ranges to find the key</para>
+            <para>that contains the param, returning the Value stored at that location.</para>
+            <para>Also, there is an optimized search available in case this houses many Key/Value pairs and needs to be looped through</para>
+            <para>many times.</para>
+            <para>It will only accept type T where T : IComparable&lt;T&gt; and also accepts a value of type U.</para>
+            <para>There are no restrictions on type U</para>
+            </summary>
+            <typeparam name="T">the type of item that will make up the lower and upper bounds of a range for the key (T:IComparable&lt;T&gt;</typeparam>
+            <typeparam name="U">the type of item that will be stored as the value. no restrictions on type</typeparam>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.RangeArray`2.FindValue(`0)">
+            <summary>
+            get the stored value if the index is within a stored range
+            <para>else, return thows an exception </para>
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.RangeArray`2.ContainsIndex(`0)">
+            <summary>
+            looks for any possible ranges that contain the given index
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.RangeArray`2.Optimize">
+            <summary>
+            optimizes the indexing and search features for looking for indexes in multiple ranges
+            <para>depending on number of ranges stored, might take a bit of time</para>
+            <para>NOTE: it is important to optimize after entering in all key-value pairs if you plan on doing alot of searching/indexing</para>
+            <para>because this will save time and make things more efficient in the long run</para>
+            </summary>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.RangeArray`2.Add(nTools.Utilities.Ranges.Range{`0},`1)">
+            <summary>
+            Adds the new range key and value pair
+            <para>make sure to optimize before runing any full scale index based operations</para>
+            </summary>
+            <param name="newRange"></param>
+            <param name="newValue"></param>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.RangeArray`2.Remove(nTools.Utilities.Ranges.Range{`0})">
+            <summary>
+            attempts to remove the key/value pair based on supplied key
+            </summary>
+            <param name="oldRange"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.RangeArray`2.Clear">
+            <summary>
+            clears all entries into the RangeArray
+            </summary>
+        </member>
+        <member name="P:nTools.Utilities.Ranges.RangeArray`2.Errors">
+            <summary>
+            gets a readonly List of errors
+            </summary>
+        </member>
+        <member name="P:nTools.Utilities.Ranges.RangeArray`2.RangeKeys">
+            <summary>
+            gets a readonly list of Keys
+            </summary>
+        </member>
+        <member name="P:nTools.Utilities.Ranges.RangeArray`2.IsOptimized">
+            <summary>
+            returns whether the RangeArray has been optimized since the last time something was added to it
+            </summary>
+        </member>
+        <member name="P:nTools.Utilities.Ranges.RangeArray`2.Item(`0)">
+            <summary>
+            get the stored value if the index is within a stored range, 
+            <para>else, return newly constructed value and store the error to Errors</para>
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:nTools.Utilities.Ranges.RangeArray`2.RangeError">
+            <summary>
+            RangeError for type RangeArray&lt;T,U&gt;
+            </summary>
+        </member>
+        <member name="M:nTools.Utilities.Ranges.RangeArray`2.RangeError.#ctor(`0,System.String)">
+            <summary>
+            constructor for setting up the RangeError. Note that no other methods are 
+            <para>available, so set the error fields here and now</para>
+            </summary>
+            <param name="index"></param>
+            <param name="value"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="P:nTools.Utilities.Ranges.RangeArray`2.RangeError.Index">
+            <summary>
+            the index that was attempted to access
+            </summary>
+        </member>
+        <member name="P:nTools.Utilities.Ranges.RangeArray`2.RangeError.Msg">
+            <summary>
+            the error message
+            </summary>
+        </member>
+        <member name="M:nTools.Utilities.Shapes.Triangle.GetOppositeLength(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            finds the length of the opposite side of a right triangle given point a, and point b
+            </summary>
+            <param name="a">the point who's rays are the hypotenuse and adjacent sides</param>
+            <param name="b">the point how's rays are the hypotenuse and opposite sides</param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Shapes.Triangle.GetHypotenuseLength(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            finds the length of the hypotenuse of a right triangle given point a, and point b
+            </summary>
+            <param name="a">the point who's rays are the hypotenuse and adjacent sides</param>
+            <param name="b">the point how's rays are the hypotenuse and opposite sides</param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Shapes.Triangle.GetOppositeLength(System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            finds the length of the opposite side of a right triangle given point a, and point b
+            </summary>
+            <param name="a">the point who's rays are the hypotenuse and adjacent sides</param>
+            <param name="b">the point how's rays are the hypotenuse and opposite sides</param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Shapes.Triangle.GetHypotenuseLength(System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            finds the length of the hypotenuse of a right triangle given point a, and point b
+            </summary>
+            <param name="a">the point who's rays are the hypotenuse and adjacent sides</param>
+            <param name="b">the point how's rays are the hypotenuse and opposite sides</param>
+            <returns></returns>
+        </member>
+        <member name="T:nTools.Utilities.Math.Trig">
+            <summary>
+            Series of static methods to aid in development of Trig based solutions
+            </summary>
+        </member>
+        <member name="M:nTools.Utilities.Math.Trig.AngleOf(System.Int32,System.Int32)">
+            <summary>
+            finds the angle theta given length of hypotenuse and opposite sides
+            </summary>
+            <param name="oppositeLength">length of the opposite side</param>
+            <param name="hypotenuseLength">length of the hypotenuse</param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Math.Trig.AngleOf(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            finds the angle theta given point a and point b
+            </summary>
+            <param name="a">point who's rays encompass the hypotenuse and adjacent sides</param>
+            <param name="b">point who's rays encompass the hypotenuse and opposite sides</param>
+            <returns type="System.float"></returns>
+        </member>
+        <member name="M:nTools.Utilities.Math.Trig.AngleOf(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            finds the angle theta given 2 sets of coordinates
+            </summary>
+            <param name="x1"></param>
+            <param name="y1"></param>
+            <param name="x2"></param>
+            <param name="y2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nTools.Utilities.Math.Trig.AngleOf(System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            finds the angle theta given point a and point b
+            </summary>
+            <param name="a">point who's rays encompass the hypotenuse and adjacent sides</param>
+            <param name="b">point who's rays encompass the hypotenuse and opposite sides</param>
+            <returns type="System.float"></returns>
+        </member>
+        <member name="M:nTools.Utilities.Math.Trig.AngleOf(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            finds the angle theta given 2 sets of coordinates
+            </summary>
+            <param name="x1"></param>
+            <param name="y1"></param>
+            <param name="x2"></param>
+            <param name="y2"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
